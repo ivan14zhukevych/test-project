@@ -1,0 +1,14 @@
+
+  <div class="side-dropdown_wrapper" *ngIf="showMenu" (mouseleave)="showMenu=false">
+    <div class="sidedropdown__item" *ngFor="let SideDropDownItem of SideDropDownItems"
+         [routerLink]="[SideDropDownItem.link]"
+    >
+      <mat-icon>{{ SideDropDownItem.icon }}</mat-icon>
+      <div class="sidebar__text">
+        <span>{{ SideDropDownItem.name }}</span>
+      </div>
+    </div>
+  </div>
+
+
+

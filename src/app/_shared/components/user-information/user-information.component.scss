@@ -1,0 +1,73 @@
+@import "src/assets/styles/general";
+
+.profile {
+  text-align: initial;
+
+  &-field {
+    display: flex;
+    padding: 5px 0;
+    align-items: center;
+    &-title {
+      min-width: 15vw;
+      background: $field-background;
+      background: $field-gradient;
+      padding: 10px;
+      margin-right: 10px;
+      color: $text-color-primary;
+    }
+
+    .profile-field-value,.profile-field-title {
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+}
+
+.pencil-container {
+  width: 100px;
+}
+
+.pencil {
+  display: none;
+}
+
+.inactive-pencil {
+  display: none !important;
+}
+
+.profile-field:hover {
+  display: flex;
+  cursor: pointer;
+
+  .pencil {
+    display: block;
+    padding-left: 5px;
+  }
+}
+
+.edit-input {
+  height: 20px;
+  font-size: 16px;
+  border: 0;
+  padding: 0 2px;
+  outline: 0;
+  border-radius: 1px;
+}
+
+::ng-deep .mat-form-field-appearance-legacy {
+
+  .mat-form-field-wrapper {
+    padding-bottom: 0;
+    font-size: 15px;
+  }
+
+  .mat-form-field-infix {
+    padding: 0;
+    border: none;
+  }
+}
+
+::ng-deep .mat-form-field-hide-placeholder .mat-select-placeholder {
+  font-size: 8px;
+}
+

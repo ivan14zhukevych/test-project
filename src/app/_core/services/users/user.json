@@ -1,0 +1,122 @@
+{
+  "email": "superuser@mail.com",
+  "firstname": "Super",
+  "lastname": "User",
+  "id": "4aeff959-9906-42d9-b01a-a97a30a137a1",
+  "is_verified": true,
+  "is_active": true,
+  "stack": {
+    "title": ".Net",
+    "description": "",
+    "priority": 1,
+    "id": 1
+  },
+  "level": {
+    "title": "Intern",
+    "technology": 1,
+    "system": 1,
+    "people": 1,
+    "soft_skills": 1,
+    "english_level": 1,
+    "performance_level": 4,
+    "influence": 2,
+    "is_active": true,
+    "priority": 1,
+    "id": 1
+  },
+  "extra_stack": [
+    {
+      "title": "Xamarin",
+      "description": "",
+      "priority": 2,
+      "id": 2
+    },
+    {
+      "title": "Flutter",
+      "description": "",
+      "priority": 3,
+      "id": 3
+    }
+  ],
+  "is_admin": true,
+  "is_mentor": true,
+  "is_manager": true,
+  "is_employee": true,
+  "manager": {
+    "id": "4aeff959-9906-42d9-b01a-a97a30a137a1",
+    "firstname": "Super",
+    "lastname": "User"
+  },
+  "mentor": {
+    "id": "4aeff959-9906-42d9-b01a-a97a30a137a1",
+    "firstname": "Super",
+    "lastname": "User"
+  },
+  "skills": {
+    "technology": {
+      "id": 1,
+      "title": "Adopts",
+      "description": "Actively learns and adopts the technology and tools defined by the team",
+      "priority": 1
+    },
+    "system_level": {
+      "id": 1,
+      "title": "Enhances",
+      "description": "Successfully pushes new features and bug fixes to improve and extend the system",
+      "priority": 1
+    },
+    "people": {
+      "title": "Learns",
+      "description": "Quickly learns from others and consistently steps up when it is required",
+      "is_active": true,
+      "priority": 1,
+      "id": 1
+    },
+    "soft_skill": {
+      "id": 1,
+      "title": "Limited",
+      "description": "Limited or no use of competency required for the job",
+      "priority": 1
+    },
+    "english_level": {
+      "title": "Intermediate Low",
+      "description": "Speaks more confidently and frequently corrects himself\\herself when he\\she understands his\\her own mistakes",
+      "priority": 1,
+      "is_active": true,
+      "id": 1
+    },
+    "performance_level": {
+      "id": 4,
+      "title": "Expected",
+      "description": "high speed and stability of task completeness, the minimal number of mistakes, all resources are used effectively",
+      "priority": 4
+    },
+    "influence": {
+      "title": "Subsystem",
+      "description": "Makes an impact on one or more subsystems",
+      "priority": 1,
+      "id": 1
+    }
+  },
+  "appraisals": [
+    {
+      "id": 1,
+      "title": "Title",
+      "description": "Descr",
+      "created_date": "2022-03-31T09:34:22.727629",
+      "completed_date": null,
+      "is_active": true,
+      "goals": [
+        {
+          "id": 1,
+          "title": "Angular",
+          "description": "Upload Goal description",
+          "created_date": "2022-03-31T09:36:50.996860",
+          "updated_date": "2022-03-31T09:36:50.996865",
+          "status": "active",
+          "is_active": true
+        }
+      ]
+    }
+  ]
+}

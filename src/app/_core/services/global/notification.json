@@ -1,0 +1,23 @@
+[
+  {
+    "message": "New notification message text 1",
+    "user_id": "4aeff959-9906-42d9-b01a-a97a30a137a1",
+    "date": "2022-03-31T09:36:50.996860",
+    "is_active": true
+  },
+  {
+    "message": "New notification message text 2",
+    "user_id": "4aeff959-9906-42d9-b01a-a97a30a137a1",
+    "is_active": true
+  },
+  {
+    "message": "Notification message text 1",
+    "user_id": "4aeff959-9906-42d9-b01a-a97a30a137a1",
+    "is_active": false
+  },
+  {
+    "message": "Notification message text 2",
+    "user_id": "4aeff959-9906-42d9-b01a-a97a30a137a1",
+    "is_active": false
+  }
+]

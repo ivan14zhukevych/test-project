@@ -1,0 +1,55 @@
+
+.btn-bell{
+  color: white;
+  padding: 0;
+  min-width: 0;
+}
+
+.active{
+  background: #000;
+  border-radius: 50%;
+}
+
+.no-scroll-viewport{
+  padding: 20px;
+}
+
+.scroll-viewport{
+    height: 150px;
+    position: relative;
+}
+
+.loader{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: .3;
+    background: rgba(141, 140, 140, .3);
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 150px;
+}
+
+.new-section{
+    display: block;
+    text-align: center;
+    background: rgba(66, 136, 93, 0.4);
+    border-bottom: 1px solid rgb(66, 136, 93);
+}
+
+.old-section{
+    display: block;
+    text-align: center;
+    background-color: rgba(87, 87, 87, 0.3);
+}
+
+.old-section-underline {
+  display: block;
+  border-bottom: 1px solid red;
+}
+
+
+

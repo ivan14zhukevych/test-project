@@ -1,0 +1,39 @@
+:host {
+  &:last-child .modal .modal-backdrop {
+    opacity: 0.4;
+  }
+
+  .modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1030;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: black;
+      z-index: 1;
+      opacity: 0;
+    }
+
+    .modal-dialog {
+      z-index: 2;
+      min-height: 100px;
+      background-color: white;
+
+      &.confirm-modal {
+        min-height: unset;
+        width: 400px
+      }
+    }
+  }
+}

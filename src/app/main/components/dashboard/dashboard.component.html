@@ -1,0 +1,56 @@
+<div *ngIf="user && levels" class="dashboard">
+
+  <div class="dashboard__user-table">
+
+    <div class="dashboard__control-container">
+      <mat-form-field>
+        <mat-label>Select level</mat-label>
+        <mat-select [value]="defaultLevelInSelectLevelFormField" (selectionChange)="addLevel($event.value)">
+          <mat-option *ngFor="let level of levels" [value]="level">
+            {{ level.title }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <h2>Professional skills</h2>
+
+    <table mat-table [dataSource]="radarTableData">
+
+      <ng-container matColumnDef="skill">
+        <th mat-header-cell *matHeaderCellDef> Level</th>
+        <td mat-cell *matCellDef="let element"> {{element.skill}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="currentLevel">
+        <th mat-header-cell *matHeaderCellDef> Your current level</th>
+        <td mat-cell [style.color]="element.currentPriority < element.selectedPriority ? 'red' : ''"
+            *matCellDef="let element"> {{element.currentLevel}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="selectedLevel">
+        <th mat-header-cell *matHeaderCellDef> Selected level</th>
+        <td mat-cell *matCellDef="let element"> {{element.selectedLevel}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+  <div class="dashboard__radar">
+
+    <canvas
+      width="8" 
+      height="5"
+      baseChart
+      [datasets]="radarChartData"
+      [labels]="radarChartLabels"
+      [chartType]="radarChartType"
+      [options]="radarOptions"
+      (chartHover)="chartHovered($event)"
+      (chartClick)="chartClicked($event)"
+    ></canvas>
+
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<app-header (toggle)="sidenav.toggle()"></app-header>
+<div class="main-container">
+    <app-sidenav #sidenav (toggle1)="sidenavdropdown.toggle1()"></app-sidenav>
+    <app-sidedropdown #sidenavdropdown></app-sidedropdown>
+
+    <router-outlet></router-outlet>
+</div>
+<app-footer></app-footer>
+<div content-host></div>

@@ -1,0 +1,56 @@
+@import "src/assets/styles/variables";
+@import "src/assets/styles/table";
+
+::ng-deep .users-list {
+  &__table {
+    .common-cell:not(:last-child):not(:first-child) {
+      padding: 0px 8px;
+    }
+
+    .body-cell {
+      &:nth-child(2),
+      &:nth-child(3) {
+        font-weight: 500;
+      }
+    }
+  }
+
+  &__clear-option {
+    .mat-pseudo-checkbox {
+      display: none;
+    }
+  }
+}
+
+.users-list {
+  &__filters-title-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+  }
+
+  &__filters {
+    &-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    &-title {
+      font-size: 18px;
+      width: 100%;
+      text-align: left;
+      margin: 0;
+      line-height: 36px;
+    }
+
+    &-item {
+      margin-right: 20px;
+    }
+
+    &-button {
+      height: fit-content;
+      margin-right: 0;
+      min-width: unset;
+    }
+  }
+}

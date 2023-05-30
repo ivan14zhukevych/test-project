@@ -1,0 +1,30 @@
+@import "variables";
+@import "general";
+
+.auth-card {
+  width: 350px;
+  padding: 20px;
+}
+
+mat-form-field {
+  width: 100%;
+  margin: 15px 0;
+  height: 40px;
+  font-size: 16px;
+
+  &.invalid-form-field {
+    margin: 15px 0 45px;
+  }
+}
+
+.form-buttons {
+  margin: 35px 0 10px;
+
+  & button {
+    margin-right: 15px;
+  }
+}
+
+mat-card{
+  background: $background-light;
+}

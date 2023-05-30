@@ -1,0 +1,67 @@
+<mat-toolbar class="header">
+  <ng-template
+    class="header__menu"
+    [userHasRole]="userRoles.Employee"
+    [user]="user"
+  >
+    <button mat-icon-button (click)="toggleSidebar()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </ng-template>
+
+  <a [routerLink]="['/']" class="header__logo">
+    <div class="logo-icon">
+      <img src="assets/images/logo.svg" />
+    </div>
+  </a>
+
+  <span class="spacer"></span>
+
+  <ng-template [userHasRole]="userRoles.Employee" [user]="user">
+    <div>
+      <h1 class="header__title">{{ title.getTitle() }}</h1>
+    </div>
+
+    <span class="spacer"></span>
+
+    
+    <div class="header__notifications">
+      <app-notifications></app-notifications>
+    </div>
+    
+    
+    <div class="header__user-info">
+      <img
+        class="avatar"
+        [routerLink]="['/user']"
+        src="assets/images/avatar.png"
+        alt="User Avatar"
+      />
+
+      <button mat-button [matMenuTriggerFor]="menu">
+        <span>
+          <div class="header__user-name">
+            <h6>{{ user?.firstname }} {{ user?.lastname }}</h6>
+            <mat-icon>expand_more</mat-icon>
+          </div>
+        </span>
+      </button>
+
+      <mat-menu class="profile-menu" #menu="matMenu">
+        <button mat-menu-item [routerLink]="['/user']">
+          <mat-icon class="profile__icon">perm_identity</mat-icon>
+          <a class="user-profile"> Profile </a>
+        </button>
+
+        <mat-divider></mat-divider>
+
+        <button mat-menu-item>
+          <div class="nav-button logout" (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            <a class="user-profile">Logout</a>
+          </div>
+        </button>
+      </mat-menu>
+    </div>
+  </ng-template>
+</mat-toolbar>

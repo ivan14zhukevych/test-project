@@ -1,0 +1,51 @@
+<mat-sidenav-container *ngIf="user" class="sidebar">
+  <div
+    *ngFor='let sideNavItem of sideNavItems; let i = index'
+    [routerLink]="[sideNavItem.link]"
+    routerLinkActive="list-item-active"
+    [routerLinkActiveOptions]="{ exact: true }"
+   >
+      <ng-template [userHasRole]="sideNavItem.role" [user]="user"
+      >
+
+        <div
+          class="sidebar__item"
+          [matTooltip]="sideNavItem.name"
+          matTooltipPosition="right"
+          matTooltipShowDelay="50"
+          matTooltipHideDelay="100"
+          [matTooltipDisabled]="isExpanded"
+          *ngIf="sideNavItem.hasDropdown===false"
+          hover-class="list-item-active"
+        >
+            <mat-icon>{{ sideNavItem.icon }}</mat-icon>
+            <div class="sidebar__text"
+                 [@slideInOut]="menuState"
+            >
+              <span>{{ sideNavItem.name }}</span>
+            </div>
+        </div>
+
+
+        <div
+          class="sidebar__item"
+          [matTooltip]="sideNavItem.name"
+          matTooltipPosition="right"
+          matTooltipShowDelay="50"
+          #toggleButton
+          matTooltipHideDelay="100"
+          [matTooltipDisabled]="isExpanded"
+          *ngIf="sideNavItem.hasDropdown===true"
+          (mouseenter)="consoldrop()"
+          hover-class="list-item-active"
+        >
+          <mat-icon>{{ sideNavItem.icon }}</mat-icon>
+          <div class="sidebar__text" [@slideInOut]="menuState">
+            <span>{{ sideNavItem.name }}</span>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+
+
+</mat-sidenav-container>

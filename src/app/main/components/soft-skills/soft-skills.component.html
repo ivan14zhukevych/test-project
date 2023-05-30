@@ -1,0 +1,18 @@
+
+<div *ngIf="softSkills" class="table-container">
+  <app-table
+    [setKeysObject]="user?.isAdmin ? tableKeysObjectAdmin : tableKeysObject"
+    [tableData]="softSkills"
+
+    [isCreable]="user?.isAdmin || false"
+    [isDeletable]="user?.isAdmin || false"
+    [isEditable]="user?.isAdmin || false"
+
+    (rowActionSaveCreated)="onCreate($event, false)"
+    (rowActionSaveEdited)="onEditOrDelete($event, false)"
+    (rowActionDelete)="onEditOrDelete($event, true)"
+
+    class="soft-skills-table table"
+  >
+  </app-table>
+</div>

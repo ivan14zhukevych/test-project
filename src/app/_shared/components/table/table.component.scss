@@ -1,0 +1,45 @@
+@import "src/assets/styles/general";
+
+table ::ng-deep {
+  width: 100%;
+
+  .mat-form-field-infix {
+    width: unset;
+  }
+}
+
+.filter-width {
+  width: 40%;
+}
+
+.table-overflow {
+  overflow: auto;
+}
+
+.no-data-matching-cell {
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.no-data-matching-row {
+  height: 48px;
+}
+
+.above-table {
+  display: flex;
+  flex-flow: row-reverse;
+  justify-content: space-between;
+}
+
+.create-btn {
+  padding-bottom: 20px;
+}
+
+.form-field {
+  width: 100%;
+}
+
+.save-cancel-btns {
+  display: flex;
+  flex-flow: column;
+}

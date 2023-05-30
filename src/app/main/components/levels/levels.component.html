@@ -1,0 +1,19 @@
+<div *ngIf="levels" class="table-container">
+  <h3 class="table-container__filters-title">Filter:</h3>
+  <app-table
+    [setKeysObject]="user?.isAdmin ? tableKeysObjectAdmin : tableKeysObject"
+    [tableData]="levels"
+    
+    [isCreable]="user?.isAdmin || false"
+    [isDeletable]="user?.isAdmin || false"
+    [isEditable]="user?.isAdmin || false"
+    [isFilterable]="true"
+
+    (rowActionSaveCreated)="onCreate($event, false)"
+    (rowActionSaveEdited)="onEditOrDelete($event, false)"
+    (rowActionDelete)="onEditOrDelete($event, true)"
+    
+    class="levels-table table"
+  >
+  </app-table>
+</div>

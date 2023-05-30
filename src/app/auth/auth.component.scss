@@ -1,0 +1,10 @@
+@import "src/assets/styles/variables";
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 70vh;
+  padding: 40px 0;
+}

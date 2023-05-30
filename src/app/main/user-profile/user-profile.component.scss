@@ -1,0 +1,107 @@
+@import "src/assets/styles/general";
+
+.profile-container {
+  padding: 22px;
+
+  mat-divider {
+    margin: 5px 0;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .avatar {
+      width: 50px;
+      height: 50px;
+      margin-right: 20px;
+    }
+
+    .main-title {
+      font-size: 24px;
+      font-weight: 500;
+
+      .user-id {
+        font-size: 12px;
+        color: $text-color-primary;
+      }
+    }
+
+    .subtitle {
+      color: $text-color-dark;
+      text-align: start;
+    }
+
+    .actions {
+      margin-left: auto;
+      margin-right: 0;
+    }
+  }
+
+  .profile {
+    text-align: initial;
+
+    &-field {
+      display: flex;
+      padding: 5px 0;
+      align-items: center;
+      &-title {
+        min-width: 15vw;
+        background: $field-background;
+        background: $field-gradient;
+        padding: 10px;
+        margin-right: 10px;
+        color: $text-color-primary;
+      }
+
+      .profile-field-value,.profile-field-title {
+        font-size: 18px;
+        font-weight: 500;
+      }
+    }
+
+    &-display {
+      height: 50%;
+      padding-top: 10px;
+      width: 400px;
+
+      &-title {
+        font-size: 24px;
+
+        &-container {
+          height: 36px;
+          display: flex;
+          padding: 0 10px;
+          align-items: center;
+          justify-content: space-between;
+        }
+      }
+    }
+
+    .profile-display-info {
+      font-size: 24px;
+      padding: 18px 10px 14px;
+    }
+  }
+}
+
+.button-text {
+  display: flex;
+  align-items: center;
+}
+
+.light-button {
+  margin-left: 10px;
+}
+
+.material-icons {
+  cursor: pointer;
+}
+
+@media screen and (min-width: 800px) {
+  .profile {
+    display: flex;
+    justify-content: space-around;
+  }
+}

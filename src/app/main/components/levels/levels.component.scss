@@ -1,0 +1,12 @@
+@import "src/assets/styles/table";
+
+.table-container__filters-title {
+  margin: 0px;
+}
+
+.levels-table ::ng-deep {
+
+  .common-cell:not(:last-child):not(:first-child) {
+    padding: 0px 8px;
+  }
+}

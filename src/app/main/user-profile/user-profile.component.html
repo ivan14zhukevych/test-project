@@ -1,0 +1,80 @@
+<div *ngIf="user" class="profile-container">
+  <div class="header">
+    <div>
+      <img
+        alt="User Avatar"
+        class="avatar"
+        src="https://upload.wikimedia.org/wikipedia/commons/6/67/User_Avatar.png"
+      />
+    </div>
+
+    <div class="title">
+      <div class="main-title">
+        {{ user?.firstname }} {{ user?.lastname }}
+        <span *ngIf="user.isAdmin || isNotCurrentUserProfile" class="user-id"> ({{ user.id }})</span>
+      </div>
+      <div class="subtitle">
+        <span *ngIf="user.isAdmin">Admin </span>
+        <span *ngIf="user.isMentor">Mentor </span>
+        <span *ngIf="user.isManager">Manager</span>
+      </div>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="profile">
+    <div class="profile-fields">
+      <div class="profile-display-info">User information</div>
+      <ng-container *ngFor="let field of profileFields">
+        <div class="profile-field app-user-information">
+          <app-user-information
+          [profileFieldTitle]="field"
+          [profileFieldValue]= "user"
+          (saveChanges)="saveUserChanges($event)"
+          ></app-user-information>
+        </div>
+      </ng-container>
+      <ng-container *ngFor="let field of fieldsWithButtons">
+        <div class="profile-field">
+          <div class="profile-field-title">{{ userHelper.getFieldTitle(field) }}:</div>
+          <div class="profile-field-value">
+            <button
+              class="dark-button"
+              (click)="setDisplayData(user, field)"
+              mat-raised-button>
+              <span *ngIf="displayTitle !== field">Show</span>
+              <span *ngIf="displayTitle === field">Hide</span>
+            </button>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="profile-display">
+      <ng-container *ngIf="displayTitle">
+        <div class="profile-display-title-container">
+          <span class="profile-display-title">{{ userHelper.getFieldTitle(displayTitle) }}</span>
+            <button
+              *ngIf="displayData.data.length && displayTitle === 'skills' && !displayEditMode"
+              (click)="displayEditMode = true;"
+              class="dark-button"
+              mat-raised-button>
+              Edit
+            </button>
+        </div>
+
+        <div class="profile-data">
+          <app-info-display
+            [spinnerLoading]="spinnerLoading"
+            [displayEditMode]="displayEditMode"
+            (cancelChanges)="displayEditMode = false; setDisplayData(user, displayTitle, true)"
+            (userChanges)="saveUserChanges($event)"
+            [data]="displayData"
+            [editMode]="displayEditMode"
+          ></app-info-display>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

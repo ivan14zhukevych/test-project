@@ -1,0 +1,73 @@
+@import "assets/styles/variables";
+@import "assets/styles/table";
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: $background-color;
+}
+
+mat-card {
+  border-top: 4px solid $color-primary;
+}
+
+.success-alert {
+  background-color: $color-success;
+  color: $text-color-dark;
+
+  & .mat-button-wrapper {
+    color: $text-color-dark;
+  }
+}
+.error-alert {
+  background-color: $color-error;
+  color: $text-color-light;
+
+  & .mat-button-wrapper {
+    color: $text-color-light;
+  }
+}
+
+.loading-button {
+  position: relative;
+
+  &__spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  &__text {
+    color: transparent;
+  }
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+app-main {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.dark-button {
+  background: $color-primary;
+  color: $text-color-light;
+}
+
+.light-button {
+  background: $text-color-light;
+  color: $color-primary;
+}

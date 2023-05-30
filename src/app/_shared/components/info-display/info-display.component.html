@@ -1,0 +1,54 @@
+<div *ngIf="!isEmptyData" class="profile-data" [formGroup]="editForm">
+  <div *ngFor="let item of userData.data; let i=index">
+    <div class="items">
+      <div class="title">
+        {{ item.title || i + 1 }}:&nbsp;</div>
+      <div class="value">
+        <span *ngIf="!editMode">{{ item.value }}</span>
+        <button
+          *ngIf="!userData.editData"
+          (click)="openShowModal(item)"
+          class="dark-button"
+          mat-raised-button>
+          Show
+        </button>
+        <div *ngIf="editMode && userData.editData">
+          <select [formControlName]="'item' + i" class="edit-input">
+            <option *ngFor="let skill of userData.editData[levelFields[i]]" [value]="skill.id">{{ skill.title }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="item.additionalDataValues" class="items">
+      {{ item.additionalDataValues }}
+      <input *ngIf="editMode" class="edit-input" [formControlName]="'additional' + i">
+    </div>
+  </div>
+
+  <div class="loader" *ngIf="spinnerLoading">
+    <mat-spinner
+    diameter="135"
+    strokeWidth="5"
+    ></mat-spinner>
+  </div>
+</div>
+
+<div *ngIf="isEmptyData" class="items">No data</div>
+
+<div class="save-cancel-buttons-block">
+  <button
+    *ngIf="displayEditMode"
+    (click)="onSubmit()"
+    class="dark-button"
+    mat-raised-button>
+    Save
+  </button>
+  <button
+    *ngIf="displayEditMode"
+    (click)="onCancel()"
+    class="dark-button"
+    mat-raised-button>
+    Cancel
+  </button>
+</div>
+

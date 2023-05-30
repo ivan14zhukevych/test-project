@@ -1,0 +1,85 @@
+@import "src/assets/styles/variables";
+
+.header {
+  position: sticky;
+  top: 0;
+  height: 64px;
+  z-index: 1;
+  flex: 0 0 auto;
+  background: $color-primary;
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none !important;
+    margin-left: 20px;
+  }
+
+  &__menu {
+    display: flex;
+  }
+
+  &__notifications{
+    margin-right: 15px;
+  }
+
+  &__user-info {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+  }
+
+  &__user-name {
+    display: flex;
+    align-items: center;
+    color: $text-color-light;
+  }
+
+  &__title {
+    color: $text-color-light;
+  }
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+img {
+  max-width: 120px;
+  height: 50px;
+}
+
+.avatar {
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: $color-primary;
+  font-weight: 450;
+}
+
+::ng-deep .mat-menu-content {
+  width: 220px;
+  background: $background-color;
+}
+
+.mat-menu-item {
+  mat-icon {
+    color: $color-primary !important;
+  }
+}
+
+mat-icon {
+  color: $text-color-light;
+}
+
+.mat-toolbar-single-row {
+  padding: 0 10px;
+}
+
+.logo-icon {
+  display: flex;
+}

@@ -1,0 +1,29 @@
+@import "src/assets/styles/variables";
+.side-dropdown_wrapper {
+  display: inline-block;
+  top: 50px;
+  position: absolute;
+  border-left: 1px solid #aaa;
+  border-right: 1px solid #aaa;
+  width: 200px;
+  z-index: 15;
+  background: $background-light;
+
+  .sidedropdown__item {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    border: none !important;
+    cursor: pointer;
+    padding-left: 15px;
+
+    &:hover {
+      background:$color-primary !important;
+      color: $text-color-light !important;
+      transition: 0.5s linear;
+    }
+  }
+  .sidebar__text {
+    margin-left: 15px;
+  }
+}

@@ -1,0 +1,178 @@
+<ng-container>
+  <div class="above-table">
+    <div>
+      <div *ngIf="isCreable" class="create-btn">
+        <button
+          [disabled]="editMode"
+          mat-raised-button
+          class="dark-button"
+          (click)="onCreate()"
+        >
+          Create
+        </button>
+      </div>
+    </div>
+
+    <ng-container *ngIf="isFilterable">
+      <mat-form-field class="filter-width">
+        <mat-label>Search by the entire table</mat-label>
+        <input
+          matInput
+          (keyup)="applyFilter($event)"
+          placeholder="Enter text..."
+        />
+      </mat-form-field>
+    </ng-container>
+  </div>
+
+  <div class="mat-elevation-z8">
+    <div class="table-overflow">
+      <table
+        mat-table
+        [dataSource]="tableDataSource"
+        matSort
+        class="reusable-table"
+      >
+        <!-- Generate columns -->
+        <ng-container
+          *ngFor="let tableColumn of tableColumns"
+          [matColumnDef]="tableColumn"
+        >
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            mat-sort-header
+            class="common-cell header-cell"
+          >
+            {{ keysObject[tableColumn].key || tableColumn }}
+          </th>
+
+          <td mat-cell *matCellDef="let element" class="common-cell body-cell">
+            <div
+              *ngIf="
+                tableColumn === 'id' || editedRowId !== element.id;
+                else editedCell
+              "
+            >
+              {{ element[tableColumn] | tableElementTitle:keysObject[tableColumn].keyType }}
+            </div>
+            <ng-template #editedCell>
+              <mat-form-field
+                class="form-field"
+                [ngSwitch]="keysObject[tableColumn].keyType"
+              >
+                <textarea
+                  *ngSwitchCase="'text'"
+                  [(ngModel)]="element[tableColumn]"
+                  matInput
+                  [value]="element[tableColumn]"
+                  rows="1"
+                ></textarea>
+                <input
+                  *ngSwitchCase="'number'"
+                  [(ngModel)]="element[tableColumn]"
+                  matInput
+                  type="number"
+                  [value]="element[tableColumn]"
+                />
+                <mat-select
+                  *ngSwitchCase="'boolean'"
+                  [(ngModel)]="element[tableColumn]"
+                  placeholder="Yes/No"
+                >
+                  <mat-option [value]="true"> Yes </mat-option>
+                  <mat-option [value]="false"> No </mat-option>
+                </mat-select>
+                <mat-select
+                  *ngSwitchCase="'dropdown'"
+                  [(ngModel)]="element[tableColumn]"
+                  [placeholder]="tableColumn"
+                >
+                  <mat-option
+                    *ngFor="let label of keysObject[tableColumn].labelsArray"
+                    [value]="label.title"
+                  >
+                    {{ label.title }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </ng-template>
+          </td>
+        </ng-container>
+
+        <!-- Edit column -->
+        <ng-container *ngIf="isEditable" matColumnDef="edit">
+          <th mat-header-cell *matHeaderCellDef class="common-cell header-cell">
+            Edit
+          </th>
+          <td mat-cell *matCellDef="let element" class="common-cell body-cell">
+            <button
+              mat-icon-button
+              (click)="onEdit(element)"
+              *ngIf="editedRowId !== element.id"
+              [disabled]="editMode"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <div class="save-cancel-btns" *ngIf="editedRowId === element.id">
+              <button mat-icon-button (click)="onSaveEdited(element)">
+                <mat-icon [class.loading-button__text]="isLoading">
+                  save
+                </mat-icon>
+                <div class="loading-button__spinner" *ngIf="isLoading">
+                  <mat-spinner
+                    diameter="20"
+                    color="accent"
+                    strokeWidth="2"
+                  ></mat-spinner>
+                </div>
+              </button>
+              <button
+                mat-icon-button
+                (click)="onCancelEdited()"
+                [disabled]="isLoading"
+              >
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </div>
+          </td>
+        </ng-container>
+
+        <!-- Delete column -->
+        <ng-container *ngIf="isDeletable" matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef class="common-cell header-cell">
+            Delete
+          </th>
+          <td mat-cell *matCellDef="let element" class="common-cell body-cell">
+            <button
+              mat-icon-button
+              (click)="onDelete(element)"
+              [disabled]="editMode"
+            >
+              <mat-icon> delete </mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <!-- Generate rows -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+        <!-- If filter doesn't match any data -->
+        <tr class="no-data-matching-row" *matNoDataRow>
+          <td class="no-data-matching-cell" colspan="100%">
+            No data matching the filter
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <mat-paginator
+      *ngIf="fromIsPageable"
+      [pageSizeOptions]="paginationSizes"
+      [pageSize]="defaultPageSize"
+      showFirstLastButtons
+    >
+    </mat-paginator>
+  </div>
+</ng-container>

@@ -1,0 +1,51 @@
+@import "src/assets/styles/variables";
+
+.sidebar{
+  height: 100%;
+  float:left;
+  background: $background-light;
+
+  &__item{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    border: none !important;
+    cursor: pointer;
+
+    &:hover {
+      background:$color-primary !important;
+      color: $text-color-light !important;
+      transition: 0.5s linear;
+    }
+  }
+
+    &__text{
+      align-items: center;
+      display: flex;
+  }
+  .side-dropdown {
+    background-color: $background-light;
+    color:  $text-color-dark;
+
+    &__item {
+      height: 50px;
+      display: flex;
+      align-items: center;
+      border: none !important;
+      cursor: pointer;
+    }
+  }
+ }
+
+
+mat-icon{
+  width: 60px;
+  text-align: center;
+}
+
+.list-item-active {
+  background:$color-primary !important;
+  color: $text-color-light !important;
+  font-weight: 700;
+  border: none;
+}

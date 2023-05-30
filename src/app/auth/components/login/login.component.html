@@ -1,0 +1,85 @@
+<mat-card class="auth-card">
+  <mat-card-title>Login</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="username" />
+        <mat-error *ngIf="formControls.username.errors?.required">
+          Email is required
+        </mat-error>
+        <mat-error
+          *ngIf="
+            formControls.username.errors?.email ||
+            formControls.username.errors?.pattern
+          "
+        >
+          Please enter a valid email address
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field
+        [class.invalid-form-field]="
+          formControls.password.errors?.pattern && formControls.password.touched
+        "
+      >
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          [type]="hide ? 'password' : 'text'"
+          formControlName="password"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+          type="button"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+        <mat-error *ngIf="formControls.password.errors?.required">
+          Password is required
+        </mat-error>
+        <mat-error *ngIf="formControls.password.errors?.pattern">
+          Password must contain minimum six characters, at least one uppercase
+          letter, one lowercase letter, and one number
+        </mat-error>
+      </mat-form-field>
+
+      <form [formGroup]="rememberMeForm" class="remember-me-form">
+        <mat-checkbox formControlName="isRememberMe">Remember me</mat-checkbox>
+      </form>
+
+      <div class="form-buttons">
+        <button
+          mat-raised-button
+          type="submit"
+          [disabled]="loginForm.invalid"
+          class="loading-button dark-button"
+        >
+          <span [class.loading-button__text]="isLoading">Login</span>
+          <div class="loading-button__spinner" *ngIf="isLoading">
+            <mat-spinner
+              diameter="25"
+              color="accent"
+              strokeWidth="3"
+            ></mat-spinner>
+          </div>
+        </button>
+        <a
+          mat-button
+          class="light-button"
+          [routerLink]="['../register']"
+          [disabled]="isLoading"
+          >Register</a
+        >
+      </div>
+    </form>
+
+    <p class="forgot-password__link">
+      <a [routerLink]="['../forgot-password']">Forgot password?</a>
+    </p>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,258 @@
+<section class="users-list table-container">
+  <div class="users-list__filters">
+    <div class="users-list__filters-title-wrapper">
+      <h3 class="users-list__filters-title">Filters:</h3>
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="resetFilters()"
+        class="users-list__filters-button"
+      >
+        Reset all filters
+      </button>
+    </div>
+
+    <form [formGroup]="filtersForm" class="users-list__filters-wrapper">
+      <div class="users-list__filters-item">
+        <mat-form-field appearance="outline">
+          <mat-label>Roles</mat-label>
+          <mat-select formcontrolname="role">
+            <mat-option (click)="setFilter('role', null, true)"
+              >Clear all</mat-option
+            >
+            <mat-option
+              *ngFor="let role of roles"
+              [value]="role"
+              (click)="setFilter(role.value, true, true)"
+            >
+            {{ role.key }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="users-list__filters-item">
+        <mat-form-field appearance="outline">
+          <mat-label>Mentor</mat-label>
+          <mat-select formControlName="mentor" (selectionChange)="setFilter('mentor', $event.value, true)">
+            <mat-option [value]="null"
+              >Clear all</mat-option
+            >
+            <mat-option
+              *ngFor="let option of mentorsList"
+              [value]="option.id"
+            >
+              {{ option.firstname }}
+              {{ option.lastname}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="users-list__filters-item">
+        <mat-form-field appearance="outline">
+          <mat-label>Manager</mat-label>
+          <mat-select formControlName="manager" (selectionChange)="setFilter('manager', $event.value, true)">
+            <mat-option [value]="null"
+              >Clear all</mat-option
+            >
+            <mat-option
+              *ngFor="let option of managersList"
+              [value]="option.id"
+            >
+              {{ option.firstname}}
+              {{ option.lastname}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="users-list__filters-item">
+        <form [formGroup]="levelForm">
+          <mat-form-field appearance="outline">
+            <mat-label>Level</mat-label>
+            <mat-select multiple formControlName="level">
+              <mat-option class="users-list__clear-option" (click)="setFilter('level', null); levelForm.reset()">
+                Clear all
+              </mat-option>
+              <mat-option
+                *ngFor="let level of filteredLevels"
+                [value]="level"
+                (click)="setFilter('level', level)">
+                {{ level }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </form>
+      </div>
+
+      <div class="users-list__filters-item">
+        <form [formGroup]="stackForm">
+          <mat-form-field appearance="outline">
+            <mat-label>Stack</mat-label>
+            <mat-select multiple formControlName="stack">
+              <mat-option class="users-list__clear-option" (click)="setFilter('stack', null); stackForm.reset()"
+                >Clear all
+              </mat-option>
+              <mat-option
+                *ngFor="let stack of filteredStacks"
+                [value]="stack"
+                (click)="setFilter('stack', stack);">
+                {{ stack }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </form>
+      </div>
+
+      <div class="users-list__filters-item">
+        <form [formGroup]="englishLevelForm">
+          <mat-form-field appearance="outline">
+            <mat-label>English level</mat-label>
+            <mat-select multiple formControlName="englishLevel">
+              <mat-option class="users-list__clear-option" (click)="setFilter('englishLevel', null); englishLevelForm.reset()"
+                >Clear all
+              </mat-option>
+              <mat-option
+                *ngFor="let englishLevel of filteredEnglishLevels"
+                [value]="englishLevel"
+                (click)="setFilter('englishLevel', englishLevel)">
+                {{ englishLevel }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </form>
+      </div>
+
+      <div class="users-list__filters-item">
+        <form [formGroup]="influenceForm">
+          <mat-form-field appearance="outline">
+            <mat-label>Influence</mat-label>
+            <mat-select multiple formControlName="influence">
+              <mat-option class="users-list__clear-option" (click)="setFilter('influence', null); influenceForm.reset()"
+                >Clear all
+              </mat-option>
+              <mat-option
+                *ngFor="let influence of filteredInfluences"
+                [value]="influence"
+                (click)="setFilter('influence', influence)">
+                {{ influence }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </form>
+      </div>
+
+      <div class="users-list__filters-item">
+        <form [formGroup]="peopleForm">
+          <mat-form-field appearance="outline">
+            <mat-label>People</mat-label>
+            <mat-select multiple formControlName="people">
+              <mat-option class="users-list__clear-option" (click)="setFilter('people', null); peopleForm.reset()"
+                >Clear all
+              </mat-option>
+              <mat-option
+                *ngFor="let people of filteredPeoples"
+                [value]="people"
+                (click)="setFilter('people', people)">
+                {{ people }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </form>
+      </div>
+
+      <div class="users-list__filters-item">
+        <form [formGroup]="performanceLevelForm">
+          <mat-form-field appearance="outline">
+            <mat-label>Performance level</mat-label>
+            <mat-select multiple formControlName="performanceLevel">
+              <mat-option class="users-list__clear-option" (click)="setFilter('performanceLevel', null); performanceLevelForm.reset()"
+                >Clear all
+              </mat-option>
+              <mat-option
+                *ngFor="let performanceLevel of filteredPerformanceLevels"
+                [value]="performanceLevel"
+                (click)="setFilter('performanceLevel', performanceLevel)">
+                {{ performanceLevel }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </form>
+      </div>
+
+      <div class="users-list__filters-item">
+        <form [formGroup]="softSkillForm">
+          <mat-form-field appearance="outline">
+            <mat-label>Soft skill</mat-label>
+            <mat-select multiple formControlName="softSkills">
+              <mat-option class="users-list__clear-option" (click)="setFilter('softSkills', null); softSkillForm.reset()"
+                >Clear all
+              </mat-option>
+              <mat-option
+                *ngFor="let softSkills of filteredSoftSkills"
+                [value]="softSkills"
+                (click)="setFilter('softSkills', softSkills)">
+                {{ softSkills }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </form>
+      </div>
+
+      <div class="users-list__filters-item">
+        <form [formGroup]="systemForm">
+          <mat-form-field appearance="outline">
+            <mat-label>System</mat-label>
+            <mat-select multiple formControlName="system">
+              <mat-option class="users-list__clear-option" (click)="setFilter('system', null); systemForm.reset()"
+                >Clear all
+              </mat-option>
+              <mat-option
+                *ngFor="let system of filteredSystems"
+                [value]="system"
+                (click)="setFilter('system', system)">
+                {{ system }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </form>
+      </div>
+      <div class="users-list__filters-item">
+        <form [formGroup]="technologyForm">
+          <mat-form-field appearance="outline">
+            <mat-label>Technology</mat-label>
+            <mat-select multiple formControlName="technology">
+              <mat-option class="users-list__clear-option" (click)="setFilter('technology', null); technologyForm.reset()"
+                >Clear all
+              </mat-option>
+              <mat-option
+                *ngFor="let technology of filteredTechnologys"
+                [value]="technology"
+                (click)="setFilter('technology', technology)">
+                {{ technology }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </form>
+      </div>
+    </form>
+  </div>
+
+  <div *ngIf="filteredUsers">
+    <app-table
+      tableName = "users-list"
+      [setKeysObject]="usersTableKeys"
+      [tableData]="filteredUsers || []"
+
+      [isDeletable]="false"
+      [isEditable]="true"
+      [isFilterable]="true"
+
+      (rowActionSaveEdited)="onEdit($event)"
+
+      class="users-list__table table"
+    >
+    </app-table>
+  </div>
+</section>

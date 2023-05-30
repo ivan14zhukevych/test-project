@@ -1,0 +1,49 @@
+<h2 mat-dialog-title>Create new element</h2>
+<mat-dialog-content class="mat-typography">
+  <mat-form-field
+    class="form-field"
+    *ngFor="let rowKey of data.rowKeys"
+    [class.display]="rowKey === 'id'"
+    [ngSwitch]="data.keysObjectData[rowKey].keyType"
+  >
+    <mat-label>{{ data.keysObjectData[rowKey].key }}</mat-label>
+    <textarea
+      *ngSwitchCase="'text'"
+      [(ngModel)]="data.row[rowKey]"
+      matInput
+      rows="1"
+    ></textarea>
+    <input
+      *ngSwitchCase="'number'"
+      [(ngModel)]="data.row[rowKey]"
+      matInput
+      type="number"
+    />
+    <mat-select
+      *ngSwitchCase="'boolean'"
+      [(ngModel)]="data.row[rowKey]"
+      placeholder="Yes/No"
+    >
+      <mat-option value="true"> Yes </mat-option>
+      <mat-option value="false"> No </mat-option>
+    </mat-select>
+    <mat-select
+      *ngSwitchCase="'dropdown'"
+      [(ngModel)]="data.row[rowKey]"
+      [placeholder]="rowKey"
+    >
+      <mat-option
+        *ngFor="let label of data.keysObjectData[rowKey].labelsArray"
+        [value]="label.title"
+      >
+        {{ label.title }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button class="dark-button" (click)="onSave()" cdkFocusInitial>
+    Save
+  </button>
+  <button mat-button (click)="onCancel()">Cancel</button>
+</mat-dialog-actions>

@@ -1,0 +1,66 @@
+<div (clickOutside)="closeMyMenu()">
+    <button  mat-button  #findButton [matMenuTriggerFor]="menu" class="btn-bell" (click)="openMyMenu()">
+        <i  *ngIf="notificationsDataOnlyActive.length  === 0;else elseBlock"  class="material-icons"
+        [ngClass]="{'active': buttonFocused}"
+        >notifications_none</i>
+        <ng-template  #elseBlock>
+                <i
+                *ngIf="10 > notificationsDataOnlyActive.length; else notificationsPlus"
+                class="material-icons"
+                matBadge="{{ notificationsDataOnlyActive.length }}"
+                [matBadgeHidden]="hiddenBadge"
+                matBadgeColor="warn"
+                [ngClass]="{'active': buttonFocused}"
+                >notifications_none</i>
+            <ng-template #notificationsPlus>
+                <i
+                class="material-icons"
+                matBadge="{{ 9 + '+' }}"
+                [matBadgeHidden]="hiddenBadge"
+                matBadgeColor="warn"
+                [ngClass]="{'active': buttonFocused}"
+                >notifications_none</i>
+            </ng-template>
+        </ng-template>
+    </button>
+
+    <mat-menu #menu="matMenu" overlapTrigger="false" class="mat-menu">
+        <span (mouseleave)="closeMyMenu()">
+            <ng-template matMenuContent *ngIf="notificationsData.length > 0; else noNotifications">
+                <cdk-virtual-scroll-viewport  itemSize="50" class="scroll-viewport">
+                    <span class="new-section" *ngIf="notificationsDataOnlyActive.length > 0">new</span>
+                        <button mat-menu-item *ngFor="let notification of notificationsDataOnlyActive" (click)="navToUser(notification.user_id)">
+                            <small *ngIf="notification.massage.length <= 30">{{ notification.massage }}</small>
+                            <small *ngIf="notification.massage.length > 30">{{ notification.massage | slice:0:30 }}...</small>
+                        </button>
+
+                            <span class="old-section"
+                                  *ngIf="notificationsDataOnlyInactive.length > 0 && notificationsDataOnlyActive.length === 0 "
+                            >No new notifications
+                            </span>
+                            <span class="old-section-underline"
+                                  *ngIf="notificationsDataOnlyInactive.length > 0 || notificationsDataOnlyActive.length > 0 ">
+                            </span>
+
+                        <button mat-menu-item *ngFor="let notification of notificationsDataOnlyInactive" (click)="navToUser(notification.user_id)">
+                            <small *ngIf="notification.massage.length <= 30">{{ notification.massage }}</small>
+                            <small *ngIf="notification.massage.length > 30">{{ notification.massage | slice:0:30 }}...</small>
+                        </button>
+                </cdk-virtual-scroll-viewport>
+            </ng-template>
+
+            <ng-template  #noNotifications>
+                <cdk-virtual-scroll-viewport  itemSize="50" class="scroll-viewport">
+                    <small  class="no-scroll-viewport">No any notification</small>
+                </cdk-virtual-scroll-viewport>
+            </ng-template>
+
+            <div class="loader" *ngIf="spinnerLoading">
+                <mat-spinner
+                diameter="35"
+                strokeWidth="3"
+                ></mat-spinner>
+            </div>
+        </span>
+    </mat-menu>
+</div>

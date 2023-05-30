@@ -1,0 +1,17 @@
+<div *ngIf="levels" class="table-container">
+  <app-table
+    [setKeysObject]="user?.isAdmin ? keysObjectAdmin : keysObject"
+    [tableData]="levels"
+
+    [isCreable]="user?.isAdmin || false"
+    [isDeletable]="user?.isAdmin || false"
+    [isEditable]="user?.isAdmin || false"
+
+    (rowActionSaveCreated)="onCreate($event, false)"
+    (rowActionSaveEdited)="onEditOrDelete($event, false)"
+    (rowActionDelete)="onEditOrDelete($event, true)"
+
+    class="english-level-table table"
+  >
+  </app-table>
+</div>

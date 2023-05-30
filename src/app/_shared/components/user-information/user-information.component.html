@@ -1,0 +1,63 @@
+<div class="profile-field">
+  <div class="profile-field-title">
+    {{ userHelper.getFieldTitle(profileFieldTitle) }}
+  </div>
+  <div class="profile-field-value">
+
+    <div class="value">
+      <span *ngIf="!editMode">{{ saveUserData | userProfileValue:profileFieldTitle }}</span>
+      <div *ngIf="editMode && saveUserData">
+
+        <select class="edit-input" *ngIf="profileFieldTitle !== 'extraStacks'" class="edit-input" [(ngModel)]="saveUserData">
+          <option *ngFor="let info of getUserInformation" [selected]="info === saveUserData" [ngValue]="info">{{ info | userProfileValue:profileFieldTitle }}</option>
+        </select>
+          <ng-container *ngIf="profileFieldTitle === 'extraStacks'">
+            <mat-form-field>
+              <mat-label>Extra Stacks</mat-label>
+              <mat-select multiple [(ngModel)]="saveUserData">
+                <mat-option *ngFor="let info of getUserInformation" [value]="info">{{ info | userProfileValue:profileFieldTitle: isPractice }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </ng-container>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="pencil-container">
+    <button
+      class="material-icons pencil"
+      [ngClass]="{'inactive-pencil': editMode}"
+      mat-icon-button
+      (click)="enableEditMode( profileFieldTitle )"
+    >
+      <mat-icon>edit</mat-icon>
+    </button>
+
+    <div class="save-cancel-btns" *ngIf="editMode">
+      <button mat-icon-button (click)="saveEditedChanges()">
+        <mat-icon>save</mat-icon>
+        <div class="loading-button__spinner" *ngIf="spinnerLoading">
+          <mat-spinner
+            diameter="20"
+            color="accent"
+            strokeWidth="2"
+          ></mat-spinner>
+        </div>
+      </button>
+      <button
+        mat-icon-button
+        (click)="cancelEditedChanges()"
+      >
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+

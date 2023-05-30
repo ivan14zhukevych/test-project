@@ -1,0 +1,44 @@
+@import "variables";
+
+.table-container {
+  padding: 20px 30px 30px;
+
+  &__filters-title {
+    font-size: 18px;
+    width: 100%;
+    text-align: left;
+  }
+}
+
+.table ::ng-deep {
+  .common-cell {
+    padding: 0px 30px;
+  }
+
+  .mat-sort-header-container {
+    justify-content: left;
+    
+    .mat-sort-header-content {
+      width: max-content;
+    }
+  }
+
+
+  .header-cell {
+    font-size: 16px;
+    background-color: $color-primary;
+    color: $text-color-light;
+
+    &>div>.mat-sort-header-arrow {
+      color: $text-color-light;
+    }
+  }
+
+  .body-cell {
+    text-align: left;
+
+    &:first-child {
+      font-weight: 500;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+@import "src/assets/styles/variables";
+
+.container {
+  width: 95%;
+  max-width: 1400px;
+  background: $background-light;
+  min-height: calc(100% - 60px);
+  margin: 30px 0 auto 0;
+  border-top: 5px solid $color-primary;
+  border-radius: 5px;
+  overflow: auto;
+}

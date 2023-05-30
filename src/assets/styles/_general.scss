@@ -1,0 +1,11 @@
+@import "variables";
+
+.dark-button{
+    background: $color-primary;
+    color: $text-color-light;
+  }
+  
+  .light-button{
+    background: $text-color-light;
+    color: $color-primary;
+  }

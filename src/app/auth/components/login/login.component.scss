@@ -1,0 +1,17 @@
+@import "src/assets/styles/variables";
+@import "src/assets/styles/auth";
+
+.forgot-password__link {
+  padding-top: 15px;
+
+  & a {
+    text-decoration: none;
+    color: $color-primary;
+    font-weight: bold;
+    font-size: 15px;
+  }
+}
+
+.remember-me-form {
+  margin-top: 20px;
+}

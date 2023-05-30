@@ -1,0 +1,173 @@
+<mat-card class="auth-card">
+  <mat-card-title>Register</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="registerForm" novalidate (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="firstname" />
+        <mat-error *ngIf="formControls.firstname.errors?.required">
+          First name is required
+        </mat-error>
+        <mat-error *ngIf="formControls.firstname.errors?.minlength">
+          First name must be at least 3 letters long
+        </mat-error>
+        <mat-error *ngIf="formControls.firstname.errors?.pattern">
+          First name must be contain only letters
+        </mat-error>
+        <mat-error *ngIf="formControls.firstname.errors?.pattern">
+          First name must contain NO digit
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lastname" />
+        <mat-error *ngIf="formControls.lastname.errors?.required">
+          Last name is required
+        </mat-error>
+        <mat-error *ngIf="formControls.lastname.errors?.minlength">
+          Last name must be at least 3 letters long
+        </mat-error>
+        <mat-error *ngIf="formControls.lastname.errors?.pattern">
+          Last name must be contain only letters
+        </mat-error>
+        <mat-error *ngIf="formControls.lastname.errors?.pattern">
+          First name must contain NO digit
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" />
+        <mat-error *ngIf="formControls.email.errors?.required">
+          Email is required
+        </mat-error>
+        <mat-error
+          *ngIf="
+            formControls.email.errors?.email ||
+            formControls.email.errors?.pattern
+          "
+        >
+          Please enter a valid email address
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field
+        [class.invalid-form-field]="
+          formControls.password.errors?.pattern && formControls.password.touched
+        "
+      >
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          [type]="hidePassword ? 'password' : 'text'"
+          formControlName="password"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hidePassword = !hidePassword"
+          type="button"
+        >
+          <mat-icon>{{
+            hidePassword ? "visibility_off" : "visibility"
+          }}</mat-icon>
+        </button>
+        <mat-error *ngIf="formControls.password.errors?.required">
+          Password is required
+        </mat-error>
+        <mat-error *ngIf="formControls.password.errors?.pattern">
+          Password must contain minimum six characters, at least one uppercase
+          letter, one lowercase letter, and one number
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Confirm Password</mat-label>
+        <input
+          matInput
+          [type]="hidePassword ? 'password' : 'text'"
+          formControlName="confirm_password"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hidePassword = !hidePassword"
+          type="button"
+        >
+          <mat-icon>{{
+            hidePassword ? "visibility_off" : "visibility"
+          }}</mat-icon>
+        </button>
+        <mat-error
+          *ngIf="
+            registerForm.hasError('mustMatch') &&
+            formControls.confirm_password.errors?.mustMatch
+          "
+        >
+          Passwords must match
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Stack</mat-label>
+        <mat-select formControlName="stack_id" #selectedStack>
+          <mat-select-trigger>
+            {{registerForm.controls.stack_id.value ?  checkMatchingStack(selectedStack.triggerValue) : null}}
+          </mat-select-trigger>
+          <mat-option *ngFor="let stack of stacks$" [value]="stack.id">
+            {{ stack.title }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="formControls.stack_id.errors?.required">
+          Stack is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select formControlName="extra_stack_list_id"  placeholder="Additional Stacks" multiple>
+          <mat-option *ngFor="let stack of stacks$" [value]="stack.id" [disabled]="stack.id === selectedStack.value">
+                    {{ stack.title }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Level</mat-label>
+        <mat-select formControlName="level_id">
+          <mat-option *ngFor="let level of levels$" [value]="level.id">
+            {{ level.title }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="formControls.level_id.errors?.required">
+          Level is required
+        </mat-error>
+      </mat-form-field>
+
+      <div class="form-buttons">
+        <button
+          mat-raised-button
+          class="dark-button"
+          type="submit"
+          [disabled]="registerForm.invalid"
+        >
+          <span [class.loading-button__text]="isLoading">Register</span>
+          <div class="loading-button__spinner" *ngIf="isLoading">
+            <mat-spinner
+              diameter="25"
+              color="accent"
+              strokeWidth="3"
+            ></mat-spinner>
+          </div>
+        </button>
+        <a
+          mat-button
+          class="light-button"
+          [routerLink]="['../login']"
+          [disabled]="isLoading"
+          >Login</a
+        >
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

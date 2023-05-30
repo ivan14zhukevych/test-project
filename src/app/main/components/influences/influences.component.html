@@ -1,0 +1,17 @@
+<div *ngIf="influence" class="table-container">
+  <app-table
+    [setKeysObject]="user?.isAdmin ? tableKeysObjectAdmin : tableKeysObject"
+    [tableData]="influence"
+
+    [isCreable]="user?.isAdmin || false"
+    [isDeletable]="user?.isAdmin || false"
+    [isEditable]="user?.isAdmin || false"
+
+    (rowActionSaveCreated)="onCreate($event, false)"
+    (rowActionSaveEdited)="onEditOrDelete($event, false)"
+    (rowActionDelete)="onEditOrDelete($event, true)"
+    
+    class="influences-table table"
+  >
+  </app-table>
+</div>

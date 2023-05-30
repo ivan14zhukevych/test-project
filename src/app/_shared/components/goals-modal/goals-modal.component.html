@@ -1,0 +1,10 @@
+<div class="modal-container">
+  <div class="modal-header">
+    <span class="modal-title">Goal: {{ _settings.title }}</span>
+    <button class="close" (click)="cancel()">Close</button>
+  </div>
+
+  <div class="modal-body">
+    <div *ngFor="let field of fields">{{ titles[field] }}: {{ _settings[field] | goalFields:field }}</div>
+  </div>
+</div>

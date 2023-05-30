@@ -1,0 +1,20 @@
+<div *ngIf="performanceLevel" class="table-container">
+  <app-table
+    [setKeysObject]="user?.isAdmin ? tableKeysObjectAdmin : tableKeysObject"
+    [tableData]="performanceLevel"
+
+    [isCreable]="user?.isAdmin || false"
+    [isDeletable]="user?.isAdmin || false"
+    [isEditable]="user?.isAdmin || false"
+
+    [isPageable]="true"
+
+
+    (rowActionSaveCreated)="onCreate($event, false)"
+    (rowActionSaveEdited)="onEditOrDelete($event, false)"
+    (rowActionDelete)="onEditOrDelete($event, true)"
+    
+    class="performance-levels-table table"
+  >
+  </app-table>
+</div>
